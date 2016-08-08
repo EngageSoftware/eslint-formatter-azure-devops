@@ -9,4 +9,4 @@ via [the Node.js API](http://eslint.org/docs/developer-guide/nodejs-api#getforma
 
 ## License
 
-MIT © [Brian Dukes](http://engagesoftware.com)
+MIT © [Engage Software](http://engagesoftware.com)
