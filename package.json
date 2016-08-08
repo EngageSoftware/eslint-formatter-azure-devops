@@ -1,0 +1,32 @@
+{
+  "name": "eslint-formatter-vso",
+  "version": "0.1.0",
+  "description": "An ESLint formatter for Visual Studio Team Services and Team Foundation Server",
+  "license": "MIT",
+  "repository": "EngageSoftware/eslint-formatter-vso",
+  "author": {
+    "name": "Brian Dukes",
+    "email": "bdukes@engagesoftware.com",
+    "url": "engagesoftware.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "eslint",
+    "formatter",
+    "vso",
+    "tfs",
+    "vsts"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.15.2"
+  }
+}
