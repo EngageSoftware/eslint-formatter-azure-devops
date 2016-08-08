@@ -6,9 +6,10 @@ const ERROR_SEVERITY = 2;
 
 function logIssue(issue) {
     const attributes = _.chain(_.toPairs(issue))
-                        .filter(([ key, ]) => key !== 'message')
-                        .filter(([ , value, ]) => value !== undefined)
-                        .map(([ key, value, ]) => `${key}=${value};`)
+                        .map((pair) => ({ key: pair[0], value: pair[1], }))
+                        .filter((pair) => pair.key !== 'message')
+                        .filter((pair) => pair.value !== undefined)
+                        .map((pair) => `${pair.key}=${pair.value};`)
                         .value();
 
     return `##vso[task.logissue ${attributes.join('')}]${issue.message}`;
