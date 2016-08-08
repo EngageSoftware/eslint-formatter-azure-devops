@@ -25,7 +25,9 @@
     "tfs",
     "vsts"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.14.2"
+  },
   "devDependencies": {
     "ava": "^0.15.2"
   }
