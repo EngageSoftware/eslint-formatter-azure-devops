@@ -29,6 +29,6 @@
     "lodash": "^4.14.2"
   },
   "devDependencies": {
-    "ava": "^0.15.2"
+    "ava": "^0.16.0"
   }
 }

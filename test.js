@@ -112,6 +112,8 @@ test('Given results with warnings, logs warnings', (assert) => {
 });
 
 test('Given results with 7 issues, logs 7 issues in valid format', (assert) => {
-    assert.regex(formatter(fixture), /(?:##vso\[task\.logissue ((?:type|sourcepath|linenumber|columnnumber|code)=[^;]+;)+\][^\n]+(?:\n|$)){6,7}/);
-    assert.regex(formatter(fixture), /(?:##vso\[task\.logissue ((?:type|sourcepath|linenumber|columnnumber|code)=[^;]+;)+\][^\n]+(?:\n|$)){7,8}/);
+    assert.regex(formatter(fixture), /^(?:##vso\[task\.logissue ((?:type|sourcepath|linenumber|columnnumber|code)=[^;]+;)+\][^\n]+(?:\n|$)){6,7}$/);
+    assert.regex(formatter(fixture), /^(?:##vso\[task\.logissue ((?:type|sourcepath|linenumber|columnnumber|code)=[^;]+;)+\][^\n]+(?:\n|$)){7,8}$/);
+    assert.notRegex(formatter(fixture), /^(?:##vso\[task\.logissue ((?:type|sourcepath|linenumber|columnnumber|code)=[^;]+;)+\][^\n]+(?:\n|$)){5,6}$/);
+    assert.notRegex(formatter(fixture), /^(?:##vso\[task\.logissue ((?:type|sourcepath|linenumber|columnnumber|code)=[^;]+;)+\][^\n]+(?:\n|$)){8,9}$/);
 });
