@@ -1,6 +1,4 @@
-# eslint-formatter-vso [![Build Status](https://travis-ci.org/EngageSoftware/eslint-formatter-vso.svg?branch=master)](https://travis-ci.org/EngageSoftware/eslint-formatter-vso)
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/EngageSoftware/eslint-formatter-vso.svg)](https://greenkeeper.io/)
+# eslint-formatter-vso [![Travis](https://img.shields.io/travis/EngageSoftware/eslint-formatter-vso.svg)](https://travis-ci.org/EngageSoftware/eslint-formatter-vso) [![npm](https://img.shields.io/npm/v/eslint-formatter-vso.svg)](https://www.npmjs.com/package/eslint-formatter-vso) [![Greenkeeper badge](https://badges.greenkeeper.io/EngageSoftware/eslint-formatter-vso.svg)](https://greenkeeper.io/) [![npm](https://img.shields.io/npm/l/eslint-formatter-vso.svg)](/license)
 
 > An [ESLint](http://eslint.org) formatter for [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs) and [Team Foundation Server](https://www.visualstudio.com/products/tfs-overview-vs)
 
