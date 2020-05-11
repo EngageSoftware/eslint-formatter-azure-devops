@@ -1,22 +1,19 @@
 /*eslint-env node*/
 /*eslint no-console:0*/
-'use strict';
+"use strict";
 
 module.exports = {
-    "extends": "eslint:recommended",
-    "rules": {
-        "comma-dangle": [ "warn", "always", ],
-        "valid-jsdoc": [ "warn", { "requireReturn": false, }, ],
+    extends: "eslint:recommended",
+    rules: {
+        "valid-jsdoc": ["warn", { requireReturn: false }],
         "accessor-pairs": "warn",
         "array-callback-return": "warn",
         "block-scoped-var": "warn",
-        "complexity": [ "warn", { "max": 25, }, ],
+        complexity: ["warn", { max: 25 }],
         "consistent-return": "warn",
-        "curly": "warn",
         "default-case": "warn",
-        "dot-location": [ "warn", "property", ],
         "dot-notation": "warn",
-        "eqeqeq": [ "warn", "allow-null", ],
+        eqeqeq: ["warn", "allow-null"],
         "guard-for-in": "warn",
         "no-alert": "warn",
         "no-caller": "error",
@@ -35,7 +32,7 @@ module.exports = {
         "no-labels": "warn",
         "no-lone-blocks": "warn",
         "no-loop-func": "error",
-        "no-magic-numbers": [ "warn", { "ignore": [ -1, 0, 1, ], }, ],
+        "no-magic-numbers": ["warn", { ignore: [-1, 0, 1] }],
         "no-multi-str": "warn",
         "no-native-reassign": "error",
         "no-new": "warn",
@@ -54,22 +51,20 @@ module.exports = {
         "no-useless-call": "warn",
         "no-useless-computed-key": "warn",
         "no-useless-concat": "warn",
-        "no-warning-comments": [ "warn", { "terms": [ "todo", "bug", ], "location": "start", }, ],
+        "no-warning-comments": [
+            "warn",
+            { terms: ["todo", "bug"], location: "start" }
+        ],
         "no-with": "error",
-        "radix": "warn",
-        "yoda": "warn",
-        "strict": [ "warn", "safe", ],
+        radix: "warn",
+        yoda: "warn",
+        strict: ["warn", "safe"],
         "no-catch-shadow": "error",
-        "no-restricted-globals": [ "warn", "event", ],
+        "no-restricted-globals": ["warn", "event"],
         "no-shadow": "warn",
         "no-shadow-restricted-names": "error",
         "no-undef": "error",
         "no-use-before-define": "error",
-        "arrow-body-style": "warn",
-        "arrow-parens": "warn",
-        "arrow-spacing": "warn",
-        "generator-star-spacing": "warn",
-        "no-confusing-arrow": [ "warn", { "allowParens": true, }, ],
         "no-useless-constructor": "warn",
         "no-var": "warn",
         "object-shorthand": "warn",
@@ -79,19 +74,17 @@ module.exports = {
         "prefer-spread": "warn",
         "prefer-template": "warn",
         "require-yield": "warn",
-        "template-curly-spacing": "warn",
-        "yield-star-spacing": "warn",
         "no-duplicate-imports": "warn",
-        "max-statements-per-line": ["warn", { "max": 2, }, ],
-        "no-useless-escape": "warn",
+        "max-statements-per-line": ["warn", { max: 2 }],
+        "no-useless-escape": "warn"
     },
-    "env": {
-        "node": true,
-        "es6": true,
+    env: {
+        node: true,
+        es6: true
     },
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
+    parserOptions: {
+        ecmaVersion: 6,
+        sourceType: "module"
     },
-    "root": true,
+    root: true
 };
