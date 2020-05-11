@@ -1,5 +1,5 @@
-import test from 'ava';
-import formatter from './';
+const test = require("ava");
+const formatter = require("./");
 
 const fixture = [
     {
@@ -34,7 +34,7 @@ const fixture = [
         warningCount: 3,
     }, {
         filePath: "C:\\js\\errors.js",
-        messages:  [
+        messages: [
             {
                 ruleId: "no-unused-vars",
                 severity: 2,
@@ -90,13 +90,13 @@ test('Given no results, logs nothing', (assert) => {
 test('Given results with no messages, logs nothing', (assert) => {
     const results = [{
         filePath: 'tmp/good.js',
-        messages: [],
-        errorCount: 0,
+            messages: [],
+            errorCount: 0,
         warningCount: 0,
     }, {
         filePath: 'tmp/good2.js',
-        messages: [],
-        errorCount: 0,
+            messages: [],
+            errorCount: 0,
         warningCount: 0,
     }, ];
 
