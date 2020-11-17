@@ -1,13 +1,13 @@
 {
   "name": "eslint-formatter-vso",
   "version": "0.1.0",
-  "description": "An ESLint formatter for Visual Studio Team Services and Team Foundation Server",
+  "description": "An ESLint formatter for Azure DevOps and Azure DevOps Server",
   "license": "MIT",
   "repository": "EngageSoftware/eslint-formatter-vso",
   "author": {
     "name": "Brian Dukes",
     "email": "bdukes@engagesoftware.com",
-    "url": "engagesoftware.com"
+    "url": "https://engagesoftware.com"
   },
   "engines": {
     "node": ">=10"
@@ -23,7 +23,8 @@
     "formatter",
     "vso",
     "tfs",
-    "vsts"
+    "vsts",
+    "azure devops"
   ],
   "dependencies": {
     "lodash": "^4.14.2"
