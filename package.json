@@ -10,12 +10,10 @@
     "url": "engagesoftware.com"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=10"
   },
   "scripts": {
-    "test": "ava",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "test": "ava"
   },
   "files": [
     "index.js"
@@ -28,11 +26,9 @@
     "vsts"
   ],
   "dependencies": {
-    "lodash": "^4.14.2",
-    "snyk": "^1.382.0"
+    "lodash": "^4.14.2"
   },
   "devDependencies": {
     "ava": "^3.8.2"
-  },
-  "snyk": true
+  }
 }
