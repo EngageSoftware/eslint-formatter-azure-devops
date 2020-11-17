@@ -27,7 +27,7 @@
     "azure devops"
   ],
   "dependencies": {
-    "lodash": "^4.14.2"
+    "eslint-formatter-azure-devops": "^0.2.0"
   },
   "devDependencies": {
     "ava": "^3.8.2"
