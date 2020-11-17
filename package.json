@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "An ESLint formatter for Azure DevOps and Azure DevOps Server",
   "license": "MIT",
-  "repository": "EngageSoftware/eslint-formatter-vso",
+  "repository": "EngageSoftware/eslint-formatter-azure-devops",
   "author": {
     "name": "Brian Dukes",
     "email": "bdukes@engagesoftware.com",
