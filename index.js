@@ -15,25 +15,36 @@ function logIssue(issue) {
     return `##vso[task.logissue ${attributes.join("")}]${issue.message}`;
 }
 
-module.exports = results =>
-    _.chain(results)
+module.exports = (results, resultsMeta) => {
+    let shouldPrintMaxWarningsExceeded = false;
+    let maxWarningsExceededMessage;
+    if (resultsMeta?.maxWarningsExceeded != null && resultsMeta.maxWarningsExceeded.maxWarnings <= resultsMeta.maxWarningsExceeded.foundWarnings) {
+        shouldPrintMaxWarningsExceeded = true;
+        maxWarningsExceededMessage = logIssue({
+            type: "error",
+            // eslint-disable-next-line max-len
+            message: `ESLint found too many warnings (maximum: ${resultsMeta.maxWarningsExceeded.maxWarnings}, found: ${resultsMeta.maxWarningsExceeded.foundWarnings}).`,
+        });
+    }
+
+    const r = _.chain(results)
         .filter(result => result.messages.length > 0)
         .flatMap(result =>
             _.chain(result.messages)
                 .map(message =>
                     logIssue({
-                        type:
-                            message.fatal || message.severity === ERROR_SEVERITY
-                                ? "error"
-                                : "warning",
+                        type: message.fatal || message.severity === ERROR_SEVERITY ? "error" : "warning",
                         sourcepath: result.filePath,
                         linenumber: message.line,
                         columnnumber: message.column,
                         code: message.ruleId,
-                        message: message.message
+                        message: message.message,
                     })
                 )
                 .value()
         )
         .value()
         .join("\n");
+
+    return shouldPrintMaxWarningsExceeded ? `${r}\n${maxWarningsExceededMessage}\n` : r;
+};
