@@ -4,14 +4,21 @@ const ERROR_SEVERITY = 2;
 
 function logIssue(issue) {
     const attributes = Object.entries(issue)
-        .filter((pair) => pair[0] !== "message" && pair[1] !== undefined)
-        .map((pair) => `${pair[0]}=${pair[1]};`);
+        .map((pair) => {
+            const [key, value] = pair;
+            if (key === "message" || value === undefined) {
+                return null;
+            }
+
+            return `${key}=${value};`;
+        })
+        .filter((attribute) => Boolean(attribute));
 
     return `##vso[task.logissue ${attributes.join("")}]${issue.message}`;
 }
 
 module.exports = (results, resultsMeta) => {
-    const resultsAsString = results
+    const formattedResults = results
         .filter((result) => result.messages.length > 0)
         .map((result) =>
             result.messages.map((message) =>
@@ -28,20 +35,24 @@ module.exports = (results, resultsMeta) => {
                 })
             )
         )
-        .reduce((previousValue, currentValue) => {
-            if (currentValue != null && currentValue.length > 0) {
-                return previousValue.concat(currentValue);
+        .reduce((allMessages, messages) => {
+            if (messages != null && messages.length > 0) {
+                return allMessages.concat(messages);
             }
-            return previousValue;
-        }, [])
-        .join("\n");
+            return allMessages;
+        }, []);
 
-    return resultsMeta?.maxWarningsExceeded != null &&
-        resultsMeta.maxWarningsExceeded.maxWarnings <
-            resultsMeta.maxWarningsExceeded.foundWarnings
-        ? `${resultsAsString}\n${logIssue({
-              type: "error",
-              message: `ESLint found too many warnings (maximum: ${resultsMeta.maxWarningsExceeded.maxWarnings}, found: ${resultsMeta.maxWarningsExceeded.foundWarnings}).`,
-          })}\n`
-        : resultsAsString;
+    if (resultsMeta?.maxWarningsExceeded) {
+        const { maxWarnings, foundWarnings } = resultsMeta.maxWarningsExceeded;
+        if (maxWarnings < foundWarnings) {
+            formattedResults.push(
+                logIssue({
+                    type: "error",
+                    message: `ESLint found too many warnings (maximum: ${maxWarnings}, found: ${foundWarnings}).`,
+                })
+            );
+        }
+    }
+
+    return formattedResults.join("\n");
 };
