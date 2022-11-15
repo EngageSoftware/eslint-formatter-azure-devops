@@ -1,6 +1,6 @@
 {
   "name": "eslint-formatter-azure-devops",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "An ESLint formatter for Azure DevOps and Azure DevOps Server",
   "license": "MIT",
   "repository": "EngageSoftware/eslint-formatter-azure-devops",
@@ -26,9 +26,7 @@
     "vsts",
     "azure devops"
   ],
-  "dependencies": {
-    "lodash": "^4.14.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "ava": "^3.8.2"
   }
