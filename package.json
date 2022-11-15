@@ -10,7 +10,7 @@
     "url": "https://engagesoftware.com"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=14"
   },
   "scripts": {
     "test": "ava"
