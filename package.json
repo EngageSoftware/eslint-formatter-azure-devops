@@ -1,33 +1,33 @@
 {
-  "name": "eslint-formatter-azure-devops",
-  "version": "1.0.0",
-  "description": "An ESLint formatter for Azure DevOps and Azure DevOps Server",
-  "license": "MIT",
-  "repository": "EngageSoftware/eslint-formatter-azure-devops",
-  "author": {
-    "name": "Brian Dukes",
-    "email": "bdukes@engagesoftware.com",
-    "url": "https://engagesoftware.com"
-  },
-  "engines": {
-    "node": ">=14"
-  },
-  "scripts": {
-    "test": "ava"
-  },
-  "files": [
-    "index.js"
-  ],
-  "keywords": [
-    "eslint",
-    "formatter",
-    "vso",
-    "tfs",
-    "vsts",
-    "azure devops"
-  ],
-  "dependencies": {},
-  "devDependencies": {
-    "ava": "^5.1.0"
-  }
+	"name": "eslint-formatter-azure-devops",
+	"version": "1.0.0",
+	"description": "An ESLint formatter for Azure DevOps and Azure DevOps Server",
+	"license": "MIT",
+	"repository": "EngageSoftware/eslint-formatter-azure-devops",
+	"author": {
+		"name": "Brian Dukes",
+		"email": "bdukes@engagesoftware.com",
+		"url": "https://engagesoftware.com"
+	},
+	"engines": {
+		"node": ">=14"
+	},
+	"scripts": {
+		"test": "ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"eslint",
+		"formatter",
+		"vso",
+		"tfs",
+		"vsts",
+		"azure devops"
+	],
+	"devDependencies": {
+		"ava": "^5.1.0",
+		"prettier": "^2.7.1"
+	}
 }
