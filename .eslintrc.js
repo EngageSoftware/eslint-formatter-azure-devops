@@ -1,9 +1,7 @@
 /*eslint-env node*/
-/*eslint no-console:0*/
-'use strict';
 
 module.exports = {
-	extends: 'eslint:recommended',
+	extends: ['eslint:recommended', 'plugin:ava/recommended'],
 	rules: {
 		'valid-jsdoc': ['warn', { requireReturn: false }],
 		'accessor-pairs': 'warn',
@@ -80,11 +78,7 @@ module.exports = {
 	},
 	env: {
 		node: true,
-		es6: true,
-	},
-	parserOptions: {
-		ecmaVersion: 6,
-		sourceType: 'module',
 	},
 	root: true,
 };
+

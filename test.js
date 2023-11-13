@@ -90,13 +90,13 @@ const fixture = [
 	},
 ];
 
-test('Given no results, logs nothing', (assert) => {
+test('Given no results, logs nothing', (t) => {
 	const results = [];
 
-	assert.is(formatter(results), '');
+	t.is(formatter(results), '');
 });
 
-test('Given results with no messages, logs nothing', (assert) => {
+test('Given results with no messages, logs nothing', (t) => {
 	const results = [
 		{
 			filePath: 'tmp/good.js',
@@ -112,38 +112,38 @@ test('Given results with no messages, logs nothing', (assert) => {
 		},
 	];
 
-	assert.is(formatter(results), '');
+	t.is(formatter(results), '');
 });
 
-test('Given results with errors, logs errors', (assert) => {
-	assert.regex(formatter(fixture), /##vso\[task\.logissue type=error/);
+test('Given results with errors, logs errors', (t) => {
+	t.regex(formatter(fixture), /##vso\[task\.logissue type=error/);
 });
 
-test('Given results with warnings, logs warnings', (assert) => {
-	assert.regex(formatter(fixture), /##vso\[task\.logissue type=warning/);
+test('Given results with warnings, logs warnings', (t) => {
+	t.regex(formatter(fixture), /##vso\[task\.logissue type=warning/);
 });
 
-test('Given results with 7 issues, logs 7 issues in valid format', (assert) => {
-	assert.regex(
+test('Given results with 7 issues, logs 7 issues in valid format', (t) => {
+	t.regex(
 		formatter(fixture),
 		/^(?:##vso\[task\.logissue ((?:type|sourcepath|linenumber|columnnumber|code)=[^;]+;)+\][^\n]+(?:\n|$)){6,7}$/
 	);
-	assert.regex(
+	t.regex(
 		formatter(fixture),
 		/^(?:##vso\[task\.logissue ((?:type|sourcepath|linenumber|columnnumber|code)=[^;]+;)+\][^\n]+(?:\n|$)){7,8}$/
 	);
-	assert.notRegex(
+	t.notRegex(
 		formatter(fixture),
 		/^(?:##vso\[task\.logissue ((?:type|sourcepath|linenumber|columnnumber|code)=[^;]+;)+\][^\n]+(?:\n|$)){5,6}$/
 	);
-	assert.notRegex(
+	t.notRegex(
 		formatter(fixture),
 		/^(?:##vso\[task\.logissue ((?:type|sourcepath|linenumber|columnnumber|code)=[^;]+;)+\][^\n]+(?:\n|$)){8,9}$/
 	);
 });
 
-test('Given results meta, logs too many warnings error', (assert) => {
-	assert.regex(
+test('Given results meta, logs too many warnings error', (t) => {
+	t.regex(
 		formatter([], {
 			maxWarningsExceeded: {
 				maxWarnings: 7,
@@ -153,8 +153,8 @@ test('Given results meta, logs too many warnings error', (assert) => {
 		/##vso\[task.logissue type=error;\]ESLint found too many warnings \(maximum: 7, found: 9\)\./
 	);
 	const regex = /ESLint found too many warnings/gis;
-	assert.notRegex(formatter(fixture), regex);
-	assert.notRegex(
+	t.notRegex(formatter(fixture), regex);
+	t.notRegex(
 		formatter([], {
 			maxWarningsExceeded: {
 				maxWarnings: 12,
@@ -163,7 +163,7 @@ test('Given results meta, logs too many warnings error', (assert) => {
 		}),
 		regex
 	);
-	assert.notRegex(
+	t.notRegex(
 		formatter([], {
 			maxWarningsExceeded: {
 				maxWarnings: 9,
@@ -173,3 +173,4 @@ test('Given results meta, logs too many warnings error', (assert) => {
 		regex
 	);
 });
+
