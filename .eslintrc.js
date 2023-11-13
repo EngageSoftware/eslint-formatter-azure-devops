@@ -81,4 +81,3 @@ module.exports = {
 	},
 	root: true,
 };
-

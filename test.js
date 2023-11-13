@@ -213,4 +213,3 @@ test('Logs task complete with configuration', (t) => {
 		formatter.shouldLogTaskComplete = shouldLogTaskComplete;
 	}
 });
-

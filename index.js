@@ -79,4 +79,3 @@ function formatResults(results, resultsMeta) {
 formatResults.shouldLogTaskComplete = shouldLogTaskComplete;
 
 module.exports = formatResults;
-

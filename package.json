@@ -15,7 +15,7 @@
 	"scripts": {
 		"test": "ava",
 		"lint": "eslint .",
-		"fix": "eslint . --fix"
+		"fix": "prettier ./ --write && eslint . --fix"
 	},
 	"files": [
 		"index.js"
