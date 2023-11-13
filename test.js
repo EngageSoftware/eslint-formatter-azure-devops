@@ -173,3 +173,8 @@ test('Given results meta, logs too many warnings error', (assert) => {
 		regex
 	);
 });
+
+test('Given results with only warnings, ends as SucceededWithIssues', (assert) => {
+	const results = fixture.filter(f => f.errorCount === 0 && f.warningCount > 0);
+	assert.regex(formatter(results), /##vso\[task\.complete result=SucceededWithIssues/);
+});
