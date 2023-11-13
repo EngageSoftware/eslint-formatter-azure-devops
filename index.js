@@ -18,10 +18,16 @@ function logIssue(issue) {
 }
 
 module.exports = (results, resultsMeta) => {
+	let hasWarnings = false;
+	let hasErrors = false;
+
 	const formattedResults = results
 		.filter((result) => result.messages.length > 0)
-		.map((result) =>
-			result.messages.map((message) =>
+		.map((result) => {
+			hasWarnings ||= !!result.warningCount;
+			hasErrors ||= !!result.errorCount;
+
+			return result.messages.map((message) =>
 				logIssue({
 					type:
 						message.fatal || message.severity === ERROR_SEVERITY
@@ -33,8 +39,8 @@ module.exports = (results, resultsMeta) => {
 					code: message.ruleId,
 					message: message.message,
 				})
-			)
-		)
+			);
+		})
 		.reduce((allMessages, messages) => {
 			if (messages != null && messages.length > 0) {
 				return allMessages.concat(messages);
@@ -52,6 +58,10 @@ module.exports = (results, resultsMeta) => {
 				})
 			);
 		}
+	}
+
+	if (hasWarnings && !hasErrors && !resultsMeta?.maxWarningsExceeded) {
+		formattedResults.push('##vso[task.complete result=SucceededWithIssues;]');
 	}
 
 	return formattedResults.join('\n');
