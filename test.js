@@ -1,43 +1,44 @@
 const test = require('ava');
 const formatter = require('./');
 
+const fixtureWarnings = {
+	filePath: 'C:\\js\\warnings.js',
+	messages: [
+		{
+			ruleId: 'prefer-const',
+			severity: 1,
+			message:
+				"'initialNavHeight' is never reassigned. Use 'const' instead.",
+			line: 22,
+			column: 9,
+			nodeType: 'Identifier',
+			source: '        initialNavHeight = $mainNavMenu.outerHeight();',
+		},
+		{
+			ruleId: 'consistent-return',
+			severity: 1,
+			message: 'Expected to return a value at the end of this function.',
+			line: 76,
+			column: 14,
+			nodeType: 'FunctionDeclaration',
+			source: '    function hideSubmenu(menuItem) {',
+		},
+		{
+			ruleId: 'eqeqeq',
+			severity: 1,
+			message: "Expected '===' and instead saw '=='.",
+			line: 234,
+			column: 25,
+			nodeType: 'BinaryExpression',
+			source: '        if (parentLevel == 1) {',
+		},
+	],
+	errorCount: 0,
+	warningCount: 3,
+};
+
 const fixture = [
-	{
-		filePath: 'C:\\js\\warnings.js',
-		messages: [
-			{
-				ruleId: 'prefer-const',
-				severity: 1,
-				message:
-					"'initialNavHeight' is never reassigned. Use 'const' instead.",
-				line: 22,
-				column: 9,
-				nodeType: 'Identifier',
-				source: '        initialNavHeight = $mainNavMenu.outerHeight();',
-			},
-			{
-				ruleId: 'consistent-return',
-				severity: 1,
-				message:
-					'Expected to return a value at the end of this function.',
-				line: 76,
-				column: 14,
-				nodeType: 'FunctionDeclaration',
-				source: '    function hideSubmenu(menuItem) {',
-			},
-			{
-				ruleId: 'eqeqeq',
-				severity: 1,
-				message: "Expected '===' and instead saw '=='.",
-				line: 234,
-				column: 25,
-				nodeType: 'BinaryExpression',
-				source: '        if (parentLevel == 1) {',
-			},
-		],
-		errorCount: 0,
-		warningCount: 3,
-	},
+	fixtureWarnings,
 	{
 		filePath: 'C:\\js\\errors.js',
 		messages: [
@@ -172,5 +173,44 @@ test('Given results meta, logs too many warnings error', (t) => {
 		}),
 		regex
 	);
+});
+
+test('Does not log task complete without configuration', (t) => {
+	t.notRegex(formatter([]), /##vso\[task.complete result=/);
+	t.notRegex(formatter(fixture), /##vso\[task.complete result=/);
+	t.notRegex(formatter([fixtureWarnings]), /##vso\[task.complete result=/);
+	t.notRegex(
+		formatter([], {
+			maxWarningsExceeded: {
+				maxWarnings: 7,
+				foundWarnings: 9,
+			},
+		}),
+		/##vso\[task.complete result=/
+	);
+});
+
+test('Logs task complete with configuration', (t) => {
+	const shouldLogTaskComplete = formatter.shouldLogTaskComplete;
+	formatter.shouldLogTaskComplete = () => true;
+	try {
+		t.notRegex(formatter([]), /##vso\[task.complete result=/);
+		t.regex(formatter(fixture), /##vso\[task.complete result=Failed;\]/);
+		t.regex(
+			formatter([fixtureWarnings]),
+			/##vso\[task.complete result=SucceededWithIssues;\]/
+		);
+		t.regex(
+			formatter([], {
+				maxWarningsExceeded: {
+					maxWarnings: 7,
+					foundWarnings: 9,
+				},
+			}),
+			/##vso\[task.complete result=Failed;\]/
+		);
+	} finally {
+		formatter.shouldLogTaskComplete = shouldLogTaskComplete;
+	}
 });
 

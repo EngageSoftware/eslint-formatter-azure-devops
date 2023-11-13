@@ -5,6 +5,10 @@
 You can reference the formatter [from the command line](https://eslint.org/docs/latest/user-guide/command-line-interface#-f---format),
 via [the Node.js API](https://eslint.org/docs/latest/developer-guide/nodejs-api#-eslintloadformatternameorpath), or through your [task](https://www.npmjs.com/package/gulp-eslint-new) [runner](https://npmjs.org/package/grunt-eslint) [of](https://www.npmjs.org/package/broccoli-eslint) [choice](https://www.npmjs.com/package/eslint-webpack-plugin).
 
+### Log Partially Complete
+
+If you would like for the status of the task to be marked as _partially succeeded_ if there are any warnings, set the environment variable `ESLINT_AZDO_LOG_TASK_COMPLETE` before running ESLint (as of version 1.2.0).
+
 ## License
 
 MIT © [Engage Software](https://engagesoftware.com)

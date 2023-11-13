@@ -17,23 +17,36 @@ function logIssue(issue) {
 	return `##vso[task.logissue ${attributes.join('')}]${issue.message}`;
 }
 
-module.exports = (results, resultsMeta) => {
+function shouldLogTaskComplete() {
+	return Boolean(process.env.ESLINT_AZDO_LOG_TASK_COMPLETE);
+}
+
+function formatResults(results, resultsMeta) {
+	let hasError = false;
+	let hasWarning = false;
 	const formattedResults = results
 		.filter((result) => result.messages.length > 0)
 		.map((result) =>
-			result.messages.map((message) =>
-				logIssue({
-					type:
-						message.fatal || message.severity === ERROR_SEVERITY
-							? 'error'
-							: 'warning',
+			result.messages.map((message) => {
+				const type =
+					message.fatal || message.severity === ERROR_SEVERITY
+						? 'error'
+						: 'warning';
+				if (type === 'error') {
+					hasError = true;
+				} else {
+					hasWarning = true;
+				}
+
+				return logIssue({
+					type,
 					sourcepath: result.filePath,
 					linenumber: message.line,
 					columnnumber: message.column,
 					code: message.ruleId,
 					message: message.message,
-				})
-			)
+				});
+			})
 		)
 		.reduce((allMessages, messages) => {
 			if (messages != null && messages.length > 0) {
@@ -45,6 +58,7 @@ module.exports = (results, resultsMeta) => {
 	if (resultsMeta?.maxWarningsExceeded) {
 		const { maxWarnings, foundWarnings } = resultsMeta.maxWarningsExceeded;
 		if (maxWarnings < foundWarnings) {
+			hasError = true;
 			formattedResults.push(
 				logIssue({
 					type: 'error',
@@ -54,5 +68,15 @@ module.exports = (results, resultsMeta) => {
 		}
 	}
 
+	if (formatResults.shouldLogTaskComplete() && (hasError || hasWarning)) {
+		const result = hasError ? 'Failed' : 'SucceededWithIssues';
+		formattedResults.push(`##vso[task.complete result=${result};]`);
+	}
+
 	return formattedResults.join('\n');
-};
+}
+
+formatResults.shouldLogTaskComplete = shouldLogTaskComplete;
+
+module.exports = formatResults;
+
