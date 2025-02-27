@@ -20,5 +20,6 @@ MIT © [Engage Software](https://engagesoftware.com)
 Pass [the `--format` or `-f` flag](https://eslint.org/docs/latest/user-guide/command-line-interface#-f---format) to indicate the formatter via the ESLint CLI.
 
 ```pwsh
-eslint --format eslint-formatter-azure-devops src/
+$> eslint --format eslint-formatter-azure-devops src/
+##vso[task.logissue type=error;sourcepath=D:\code\eslint-example\src\script.js;linenumber=9;columnnumber=1;code=null;]Parsing error: 'return' outside of function
 ```
