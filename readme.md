@@ -1,4 +1,4 @@
-# eslint-formatter-vso [![GitHub Actions](https://github.com/EngageSoftware/eslint-formatter-azure-devops/actions/workflows/node.js.yml/badge.svg)](https://github.com/EngageSoftware/eslint-formatter-azure-devops/actions) [![npm](https://img.shields.io/npm/v/eslint-formatter-azure-devops.svg)](https://www.npmjs.com/package/eslint-formatter-azure-devops) [![npm](https://img.shields.io/npm/l/eslint-formatter-azure-devops.svg)](/license)
+# eslint-formatter-azure-devops [![GitHub Actions](https://github.com/EngageSoftware/eslint-formatter-azure-devops/actions/workflows/node.js.yml/badge.svg)](https://github.com/EngageSoftware/eslint-formatter-azure-devops/actions) [![npm](https://img.shields.io/npm/v/eslint-formatter-azure-devops.svg)](https://www.npmjs.com/package/eslint-formatter-azure-devops) [![npm](https://img.shields.io/npm/l/eslint-formatter-azure-devops.svg)](/license)
 
 > An [ESLint](http://eslint.org) formatter for [Azure DevOps](https://azure.microsoft.com/en-us/products/devops/) and [Azure DevOps Server](https://azure.microsoft.com/en-us/products/devops/server/)
 
@@ -12,3 +12,13 @@ If you would like for the status of the task to be marked as _partially succeede
 ## License
 
 MIT © [Engage Software](https://engagesoftware.com)
+
+## Examples
+
+### ESLint CLI
+
+Pass [the `--format` or `-f` flag](https://eslint.org/docs/latest/user-guide/command-line-interface#-f---format) to indicate the formatter via the ESLint CLI.
+
+```pwsh
+eslint --format eslint-formatter-azure-devops src/
+```
