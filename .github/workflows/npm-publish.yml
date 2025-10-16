@@ -4,19 +4,15 @@
 		"release": { "types": ["published"] },
 		"workflow_dispatch": {}
 	},
-	"permissions": {
-		"id-token": "write",
-		"contents": "read"
-	},
 	"jobs": {
 		"build": {
 			"runs-on": "ubuntu-latest",
 			"steps": [
-				{ "uses": "actions/checkout@v4.1.1" },
+				{ "uses": "actions/checkout@v5.0.0" },
 				{
-					"uses": "actions/setup-node@v3.8.1",
+					"uses": "actions/setup-node@v6.0.0",
 					"with": {
-						"node-version": 20
+						"node-version": 24
 					}
 				},
 				{ "run": "npm ci" },
@@ -28,17 +24,17 @@
 			"runs-on": "ubuntu-latest",
 			"permissions": { "id-token": "write" },
 			"steps": [
-				{ "uses": "actions/checkout@v4.1.1" },
+				{ "uses": "actions/checkout@v5.0.0" },
 				{
-					"uses": "actions/setup-node@v3.8.1",
+					"uses": "actions/setup-node@v6.0.0",
 					"with": {
-						"node-version": 20,
+						"node-version": 24,
 						"registry-url": "https://registry.npmjs.org/"
 					}
 				},
 				{ "run": "npm ci" },
 				{
-					"run": "npm publish --provenance",
+					"run": "npm publish",
 					"env": {
 						"NODE_AUTH_TOKEN": "${{secrets.npm_token}}"
 					}
