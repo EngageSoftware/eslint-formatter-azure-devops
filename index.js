@@ -1,5 +1,3 @@
-/*eslint-env node*/
-
 const ERROR_SEVERITY = 2;
 
 function logIssue(issue) {
