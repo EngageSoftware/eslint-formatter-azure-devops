@@ -1,6 +1,6 @@
 import js from '@eslint/js';
 import { defineConfig } from 'eslint/config';
-import ava from 'ava/flat/recommended';
+import eslintPluginAva from 'eslint-plugin-ava';
 import globals from 'globals';
 
 export default defineConfig([
@@ -11,5 +11,5 @@ export default defineConfig([
 		languageOptions: { globals: globals.node },
 	},
 	{ files: ['**/*.js'], languageOptions: { sourceType: 'commonjs' } },
-	{ files: ['test.js'], plugins: { ava }, extends: ['ava/recommended'] },
+	...eslintPluginAva.configs.recommended,
 ]);
