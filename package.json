@@ -34,7 +34,7 @@
 		"@eslint/js": "^10.0.1",
 		"ava": "^6.4.1",
 		"eslint": "^10.0.0",
-		"eslint-plugin-ava": "^15.1.0",
+		"eslint-plugin-ava": "^16.0.0",
 		"globals": "^17.0.0",
 		"prettier": "^3.0.0"
 	}
