@@ -1,5 +1,5 @@
-const test = require('ava');
-const formatter = require('./');
+import test from 'ava';
+import formatter from './index.js';
 
 const fixtureWarnings = {
 	filePath: 'C:\\js\\warnings.js',
