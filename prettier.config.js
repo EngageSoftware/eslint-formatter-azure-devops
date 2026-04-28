@@ -9,10 +9,4 @@ module.exports = {
 	bracketSameLine: true,
 	arrowParens: 'always',
 	endOfLine: 'crlf',
-	overrides: [
-		{
-			files: '*.yml',
-			options: { parser: 'json' },
-		},
-	],
 };
